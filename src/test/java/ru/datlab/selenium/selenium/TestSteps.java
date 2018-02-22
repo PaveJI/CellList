@@ -1,7 +1,9 @@
 package ru.datlab.selenium.selenium;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import Pages.Page;
 import cucumber.api.java.ru.Пусть;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -16,7 +18,7 @@ public class TestSteps {
 
     @BeforeClass
     public static void setupDriver() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","src/driver/chromedriver");
         driver = new ChromeDriver(DesiredCapabilities.chrome());
 
     }
@@ -28,8 +30,13 @@ public class TestSteps {
 
     @Test
     @Пусть("открыта страница")
-    public void open(){
+    public void open() throws InterruptedException {
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         driver.get("http://samples.gwtproject.org/samples/Showcase/Showcase.html#!CwCellList");
+        Thread.sleep(6000);
+        Page page = new Page(driver);
+        Thread.sleep(6000);
+        page.firstNameLabel.sendKeys("asdasd");
     }
 
 

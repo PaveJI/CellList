@@ -1,7 +1,18 @@
+package Pages;
+
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-public class pagesObject {
+import java.sql.Driver;
+
+public class Page {
+        WebDriver driver;
+        public Page(WebDriver driver){
+                this.driver = driver;
+                PageFactory.initElements(driver,this);
+        }
 
         @FindBy(xpath ="//*[@id=\"gwt-debug-contentPanel\"]/div[2]/div/div[2]/div/div[3]/div/div/div/table/tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]/div/div/table/tbody/tr[2]/td[2]/input")
         public WebElement firstNameLabel;
